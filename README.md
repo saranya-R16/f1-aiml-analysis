@@ -46,3 +46,6 @@ This project analyzes Formula 1 race data from the 2024 Bahrain Grand Prix using
 ## Author
 
 Saranya R
+
+## Repository link
+https://github.com/saranya-R16/f1-aiml-analysis
