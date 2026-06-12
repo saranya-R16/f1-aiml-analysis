@@ -284,13 +284,35 @@ plt.scatter(
 plt.xlabel("Actual Lap Time")
 plt.ylabel("Predicted Lap Time")
 
-plt.title("Predicted vs Actual")
+# Predicted vs Actual Plot
+plt.figure(figsize=(8,6))
+
+plt.scatter(
+    y_test,
+    y_pred,
+    alpha=0.6
+)
+
+plt.plot(
+    [y_test.min(), y_test.max()],
+    [y_test.min(), y_test.max()],
+    color="gold",
+    linewidth=2,
+    label="Perfect Prediction"
+)
+
+plt.xlabel("Actual Lap Time")
+plt.ylabel("Predicted Lap Time")
+plt.title("Predicted vs Actual Lap Times")
+plt.legend()
 
 plt.savefig(
     "plots/predicted_vs_actual.png"
 )
 
 plt.close()
+
+print("predicted_vs_actual.png created successfully")
 
 print("predicted_vs_actual.png created successfully")
 
@@ -346,8 +368,9 @@ plt.close()
 
 print("feature_importance.png created successfully")
 
-
-# Anomaly Detection
+# ==========================
+# ANOMALY DETECTION
+# ==========================
 
 laps["IsAnomaly"] = False
 
@@ -356,7 +379,6 @@ for driver in laps["Driver"].unique():
     driver_data = laps[laps["Driver"] == driver]
 
     median_time = driver_data["LapTime"].median()
-
     std_time = driver_data["LapTime"].std()
 
     threshold = median_time + (2 * std_time)
@@ -367,23 +389,48 @@ for driver in laps["Driver"].unique():
         "IsAnomaly"
     ] = True
 
-anomaly_counts = laps.groupby(
-    "Driver"
-)["IsAnomaly"].sum()
-
 print("\nAnomaly Count By Driver")
-print(anomaly_counts)
+print(
+    laps.groupby("Driver")["IsAnomaly"].sum()
+)
 
+# Top 3 fastest drivers
+top3_drivers = (
+    laps.groupby("Driver")["LapTime"]
+    .mean()
+    .sort_values()
+    .head(3)
+    .index
+)
 
-plt.figure(figsize=(12,6))
+plt.figure(figsize=(12, 6))
 
-anomaly_counts.sort_values(
-    ascending=False
-).plot(kind="bar")
+for driver in top3_drivers:
 
-plt.title("Anomaly Count by Driver")
-plt.xlabel("Driver")
-plt.ylabel("Number of Anomalies")
+    driver_data = laps[laps["Driver"] == driver]
+
+    plt.plot(
+        driver_data["LapNumber"],
+        driver_data["LapTime"],
+        label=driver
+    )
+
+    anomalies = driver_data[
+        driver_data["IsAnomaly"]
+    ]
+
+    plt.scatter(
+        anomalies["LapNumber"],
+        anomalies["LapTime"],
+        color="red",
+        marker="x",
+        s=100
+    )
+
+plt.title("Anomaly Detection - Top 3 Drivers")
+plt.xlabel("Lap Number")
+plt.ylabel("Lap Time (seconds)")
+plt.legend()
 
 plt.tight_layout()
 
