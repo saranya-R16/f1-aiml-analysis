@@ -314,7 +314,6 @@ plt.close()
 
 print("predicted_vs_actual.png created successfully")
 
-print("predicted_vs_actual.png created successfully")
 
 
 importance = pd.Series(
