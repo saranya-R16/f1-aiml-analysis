@@ -423,8 +423,10 @@ for driver in top3_drivers:
         anomalies["LapTime"],
         color="red",
         marker="x",
-        s=100
+        s=100,
+        label="Anomaly Lap"
     )
+    plt.legend()
 
 plt.title("Anomaly Detection - Top 3 Drivers")
 plt.xlabel("Lap Number")
