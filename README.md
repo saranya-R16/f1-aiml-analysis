@@ -1,21 +1,55 @@
 # F1 AI/ML Analytics — Bahrain GP 2024
+
 ## Live Race Animation + ML Dashboard
 
-### Project Structure
-```
+### Live Demo
+https://f1-aiml-analysis-npqby4dg2tvdqq9hpjc4bs.streamlit.app
+
+### GitHub Repository
+https://github.com/saranya-R16/f1-aiml-analysis
+
+---
+
+## Overview
+
+This project is an end-to-end Formula 1 Data Analysis and Machine Learning pipeline built using Python and FastF1.
+
+The project covers:
+
+- Data Collection
+- Data Cleaning
+- Exploratory Data Analysis
+- Feature Engineering
+- Machine Learning
+- Model Evaluation
+- Anomaly Detection
+- Interactive Dashboard
+
+---
+
+## Technologies Used
+
+- Python
+- FastF1
+- Pandas
+- NumPy
+- Matplotlib
+- Seaborn
+- Scikit-Learn
+- Streamlit
+
+---
+
+## Project Structure
+
+```text
 f1-aiml-analysis/
-├── web_app.py              ← Flask backend (entry point)
-├── race_data.csv           ← Your FastF1 data (place here)
+│
+├── f1_analysis.py
+├── web_app.py
 ├── requirements.txt
-│
-├── templates/
-│   └── index.html          ← Main UI
-│
-├── static/
-│   ├── style.css
-│   └── script.js
-│
-├── plots/                  ← Your existing PNG plots
+├── README.md
+├── plots/
 │   ├── lap_distribution.png
 │   ├── compound_boxplot.png
 │   ├── sector_comparison.png
@@ -24,43 +58,7 @@ f1-aiml-analysis/
 │   ├── feature_importance.png
 │   └── anomaly_detection.png
 │
-└── f1_analysis.py          ← Your existing ML pipeline
-```
-
-### Setup
-```bash
-# 1. Install dependencies
-pip install -r requirements.txt
-
-# 2. Make sure race_data.csv is in the root folder
-
-# 3. Run the app
-python web_app.py
-
-# 4. Open browser
-# http://localhost:5000
-```
-
-### Expected race_data.csv columns
-The backend auto-detects column names. It works best with:
-- `Driver` or `Abbreviation` — driver identifier
-- `LapNumber` — lap number (int)
-- `LapTime` — lap time (timedelta string like "0:01:34.123" or float seconds)
-- `Compound` — tyre compound (SOFT/MEDIUM/HARD)
-- `Sector1Time`, `Sector2Time`, `Sector3Time` — optional sector times
-
-### Features
-| Tab | What you get |
-|-----|-------------|
-| 🏎 Race Animation | Animated Bahrain circuit with real lap-by-lap car positions driven from your CSV |
-| 📡 Telemetry | Lap time traces for all drivers, tyre compound comparison, sector chart |
-| 🤖 AI/ML | R²=0.98 metrics, feature importance bar chart, predicted winner & ranking |
-| ⚠️ Anomalies | Per-driver anomalous laps (median + 2σ threshold), scatter + log table |
-
-### ML Metrics (pre-computed from your pipeline)
-- MAE  ≈ 0.33 s
-- RMSE ≈ 0.49 s
-- R²   ≈ 0.98
-
-To update metrics dynamically, save them to a `ml_results.json` file and
-point the `/api/ml_metrics` endpoint at it.
+└── F1-Dashboard/
+    ├── index.html
+    ├── style.css
+    └── app.js

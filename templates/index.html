@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>F1 AI/ML Analytics — Bahrain GP 2024</title>
     <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
@@ -123,21 +123,8 @@
         </div>
     </section>
 
-    <div class="static-plots glass">
-        <div class="lbl">ANALYSIS PLOTS — FROM YOUR PYTHON PIPELINE</div>
-        <div class="plots-grid">
-            <div class="plot-item"><img src="plots/lap_distribution.png" alt="Lap Distribution" onerror="this.parentElement.style.display='none'"/><div class="plot-caption">Lap Distribution</div></div>
-            <div class="plot-item"><img src="plots/compound_boxplot.png" alt="Compound Boxplot" onerror="this.parentElement.style.display='none'"/><div class="plot-caption">Tyre Compound</div></div>
-            <div class="plot-item"><img src="plots/sector_comparison.png" alt="Sector Comparison" onerror="this.parentElement.style.display='none'"/><div class="plot-caption">Sector Comparison</div></div>
-            <div class="plot-item"><img src="plots/speed_correlation.png" alt="Speed Correlation" onerror="this.parentElement.style.display='none'"/><div class="plot-caption">Speed Correlation</div></div>
-            <div class="plot-item"><img src="plots/predicted_vs_actual.png" alt="Predicted vs Actual" onerror="this.parentElement.style.display='none'"/><div class="plot-caption">Predicted vs Actual</div></div>
-            <div class="plot-item"><img src="plots/feature_importance.png" alt="Feature Importance" onerror="this.parentElement.style.display='none'"/><div class="plot-caption">Feature Importance</div></div>
-            <div class="plot-item"><img src="plots/anomaly_detection.png" alt="Anomaly Detection" onerror="this.parentElement.style.display='none'"/><div class="plot-caption">Anomaly Detection</div></div>
-        </div>
-    </div>
-
     <footer class="site-footer">F1 AI/ML Analytics · Bahrain GP 2024 · FastF1 Data · Random Forest R²=0.98 · MAE=0.33s</footer>
 
-    <script src="app.js"></script>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
 </body>
 </html>
