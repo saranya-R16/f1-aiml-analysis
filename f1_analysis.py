@@ -75,15 +75,47 @@ median_lap = laps["LapTime"].median()
 
 plt.figure(figsize=(10, 6))
 
-sns.histplot(laps["LapTime"], bins=30)
+sns.histplot(
+    laps["LapTime"],
+    bins=30,
+    color="skyblue",
+    edgecolor="black")
 
-plt.axvline(mean_lap, color="gold", linestyle="--", label="Mean")
-plt.axvline(median_lap, color="teal", linestyle="--", label="Median")
+plt.axvline(
+    mean_lap,
+    color="gold", 
+    linestyle="--",
+     linewidth=2, 
+    label=f"Mean ({mean_lap:.2f}s)"
+)
+plt.axvline(
+    median_lap,
+    color="teal",
+    linestyle="--", 
+    linewidth=2,
+    label=f"Median({median_lap:.2f}s)"
+    )
+plt.text(
+    mean_lap,
+    plt.ylim()[1]*0.8,
+    f"Mean: {mean_lap:.2f}s",
+    color="gold",
+    fontweight="bold"
+)
+
+plt.text(
+    median_lap,
+    plt.ylim()[1]*0.7,
+    f"Median: {median_lap:.2f}s",
+    color="teal",
+    fontweight="bold"
+)
 
 plt.title("Lap Time Distribution")
 plt.xlabel("Lap Time (seconds)")
 plt.ylabel("Count")
 plt.legend()
+plt.grid(alpha=0.3)
 
 plt.savefig("plots/lap_distribution.png")
 
@@ -91,12 +123,22 @@ plt.close()
 
 print("lap_distribution.png created successfully")
 
-plt.figure(figsize=(8,6))
+plt.figure(figsize=(10,6))
 
 sns.boxplot(
     data=laps,
     x="Compound",
-    y="LapTime"
+    y="LapTime",
+    palette=["red", "gold", "lightgray"]
+)
+
+sns.stripplot(
+    data=laps,
+    x="Compound",
+    y="LapTime",
+    color="black",
+    alpha=0.4,
+    size=3
 )
 
 plt.title("Lap Time by Tyre Compound")
@@ -314,6 +356,7 @@ plt.close()
 
 print("predicted_vs_actual.png created successfully")
 
+print("predicted_vs_actual.png created successfully")
 
 
 importance = pd.Series(
@@ -442,3 +485,4 @@ plt.savefig(
 plt.close()
 
 print("anomaly_detection.png created successfully")
+python -c "import pandas as pd; df=pd.read_csv('race_data.csv'); print(df.columns.tolist()); print(len(df))"
