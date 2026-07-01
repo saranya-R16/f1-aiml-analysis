@@ -3,7 +3,7 @@
 ## Live Race Animation + ML Dashboard
 
 ### Live Demo
-https://f1-aiml-analysis-npqby4dg2tvdqq9hpjc4bs.streamlit.app
+https://saranya-r16.github.io/f1-aiml-analysis/
 
 ### GitHub Repository
 https://github.com/saranya-R16/f1-aiml-analysis
